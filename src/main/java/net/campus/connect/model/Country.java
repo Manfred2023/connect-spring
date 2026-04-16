@@ -1,19 +1,26 @@
 package net.campus.connect.model;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.List;
 
+@Entity
+@Table(name = "countries")
 public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
+
+    @Column(unique = true)
     private String name;
+
+    @Column(unique = true)
     private String dialCode;
+
+    @Column(unique = true)
     private String alpha2;
+
+    @Column(unique = true)
     private String alpha3;
 
     @OneToMany(mappedBy = "country")
@@ -21,7 +28,7 @@ public class Country {
 
     public Country( ) {}
 
-    public Country(int id, String name, String dialCode, String alph2, String alph3) {
+    public Country(Integer id, String name, String dialCode, String alph2, String alph3) {
         this.id = id;
         this.name = name;
         this.dialCode = dialCode;
@@ -29,11 +36,11 @@ public class Country {
         this.alpha3 = alph3;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

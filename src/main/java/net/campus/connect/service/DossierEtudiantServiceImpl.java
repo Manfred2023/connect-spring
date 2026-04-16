@@ -42,7 +42,7 @@ public class DossierEtudiantServiceImpl implements DossierEtudiantService {
         return repository.findByFiliereId(filiereId);
     }
 
-    @Override
+ /*   @Override
     public List<DossierEtudiant> getByStatut(DossierEtudiant.StatutDossier statut) {
         return repository.findByStatut(statut);
     }
@@ -52,7 +52,7 @@ public class DossierEtudiantServiceImpl implements DossierEtudiantService {
         DossierEtudiant dossier = getById(id);
         dossier.setStatut(statut);
         return repository.save(dossier);
-    }
+    }*/
 
     @Override
     public void delete(Integer id) {

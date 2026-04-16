@@ -45,7 +45,7 @@ public class DossierEtudiantController {
     public ResponseEntity<ApiResponse<List<DossierEtudiant>>> getByFiliere(@PathVariable Integer filiereId) {
         return ResponseEntity.ok(ApiResponse.ok("Dossiers de la filière", service.getByFiliere(filiereId)));
     }
-
+/*
     @GetMapping("/statut/{statut}")
     public ResponseEntity<ApiResponse<List<DossierEtudiant>>> getByStatut(
             @PathVariable DossierEtudiant.StatutDossier statut) {
@@ -57,7 +57,7 @@ public class DossierEtudiantController {
             @PathVariable Integer id,
             @RequestParam DossierEtudiant.StatutDossier statut) {
         return ResponseEntity.ok(ApiResponse.ok("Statut mis à jour", service.updateStatut(id, statut)));
-    }
+    }*/
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<Void>> delete(@PathVariable Integer id) {

@@ -8,8 +8,8 @@ public interface DossierEtudiantService {
     List<DossierEtudiant> getAll();
     DossierEtudiant getById(Integer id);
     DossierEtudiant getByEtudiant(Integer etudiantId);
-    List<DossierEtudiant> getByFiliere(Integer filiereId);
+    List<DossierEtudiant> getByFiliere(Integer filiereId);/*
     List<DossierEtudiant> getByStatut(DossierEtudiant.StatutDossier statut);
-    DossierEtudiant updateStatut(Integer id, DossierEtudiant.StatutDossier statut);
+    DossierEtudiant updateStatut(Integer id, DossierEtudiant.StatutDossier statut);*/
     void delete(Integer id);
 }

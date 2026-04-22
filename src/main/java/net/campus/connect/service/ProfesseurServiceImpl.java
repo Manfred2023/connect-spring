@@ -31,15 +31,15 @@ public class ProfesseurServiceImpl implements ProfesseurService {
                 .orElseThrow(() -> new RuntimeException("Professeur not found with id: " + id));
     }
 
-    @Override
+   /* @Override
     public List<Professeur> getBySpecialite(String specialite) {
         return repository.findBySpecialite(specialite);
     }
-
-    @Override
+*/
+   /* @Override
     public List<Professeur> getByGrade(String grade) {
         return repository.findByGrade(grade);
-    }
+    }*/
 
     @Override
     public void delete(Integer id) {

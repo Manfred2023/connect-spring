@@ -13,20 +13,25 @@ public class Salle {
 
     @Column(unique = true)
     private String name;
+
     @ManyToOne
     @JoinColumn(name = "type_salle_id")
     private TypeSalle typeSalle;
+
     @Column(unique = true)
     private String code;
 
-    public Salle(Integer id, String name, TypeSalle typeSalle, String code) {
+    private Integer max;
+
+    public Salle() {
+    }
+
+    public Salle(Integer id, String name, TypeSalle typeSalle, String code, Integer max) {
         this.id = id;
         this.name = name;
         this.typeSalle = typeSalle;
         this.code = code;
-    }
-
-    public Salle() {
+        this.max = max;
     }
 
     public TypeSalle getTypeSalle() {
@@ -61,8 +66,11 @@ public class Salle {
         this.typeSalle = typeSalle;
     }
 
+    public Integer getMax() {
+        return max;
+    }
 
-
-
-
+    public void setMax(Integer max) {
+        this.max = max;
+    }
 }

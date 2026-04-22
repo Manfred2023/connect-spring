@@ -8,6 +8,6 @@ import java.util.Optional;
 
 public interface DossierEtudiantRepository extends JpaRepository<DossierEtudiant, Integer> {
     Optional<DossierEtudiant> findByEtudiantId(Integer etudiantId);
-    List<DossierEtudiant> findByFiliereId(Integer filiereId);
-    List<DossierEtudiant> findByNiveau(int niveau);
+    //List<DossierEtudiant> findByFiliereId(Integer filiereId);
+    //List<DossierEtudiant> findByNiveau(int niveau);
 }

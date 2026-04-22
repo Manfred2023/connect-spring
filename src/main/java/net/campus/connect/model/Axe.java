@@ -19,7 +19,7 @@ public class Axe {
     private String sigle;
     private Integer capMax;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "filiere_id")
     private Filiere filiere;
 

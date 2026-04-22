@@ -1,5 +1,4 @@
 package net.campus.connect.service;
-
 import net.campus.connect.model.City;
 
 import java.util.List;

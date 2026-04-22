@@ -9,7 +9,7 @@ public interface EtudiantService {
     List<Etudiant> getAll();
     Etudiant getById(Integer id);
     Etudiant getByMatricule(String matricule);
-    List<Etudiant> getByFiliere(String filiere);
-    List<Etudiant> getByNiveau(int niveau);
+   /* List<Etudiant> getByFiliere(String filiere);
+    List<Etudiant> getByNiveau(int niveau);*/
     void delete(Integer id);
 }

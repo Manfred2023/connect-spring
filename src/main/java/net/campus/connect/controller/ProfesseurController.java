@@ -35,16 +35,16 @@ public class ProfesseurController {
     public ResponseEntity<ApiResponse<Professeur>> getById(@PathVariable Integer id) {
         return ResponseEntity.ok(ApiResponse.ok("Professeur trouvé", service.getById(id)));
     }
-
+/*
     @GetMapping("/specialite/{specialite}")
     public ResponseEntity<ApiResponse<List<Professeur>>> getBySpecialite(@PathVariable String specialite) {
         return ResponseEntity.ok(ApiResponse.ok("Professeurs spécialité " + specialite, service.getBySpecialite(specialite)));
-    }
+    }*/
 
-    @GetMapping("/grade/{grade}")
+/*    @GetMapping("/grade/{grade}")
     public ResponseEntity<ApiResponse<List<Professeur>>> getByGrade(@PathVariable String grade) {
         return ResponseEntity.ok(ApiResponse.ok("Professeurs grade " + grade, service.getByGrade(grade)));
-    }
+    }*/
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<Void>> delete(@PathVariable Integer id) {

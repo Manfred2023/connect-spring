@@ -14,6 +14,10 @@ public class Niveau {
     private String valeur;
     private Integer credit;
 
+    public Niveau(Integer id) {
+        this.id = id;
+    }
+
     public Niveau(Integer id, String valeur, Integer credit) {
         this.id = id;
         this.valeur = valeur;

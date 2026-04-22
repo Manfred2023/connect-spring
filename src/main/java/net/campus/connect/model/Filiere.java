@@ -14,6 +14,7 @@ public class Filiere {
     @Column(unique = true)
     private String name;
 
+    @Column(unique = true)
     private String sigle;
 
     @ManyToOne

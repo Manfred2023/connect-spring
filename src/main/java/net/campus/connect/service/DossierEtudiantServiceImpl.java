@@ -37,12 +37,12 @@ public class DossierEtudiantServiceImpl implements DossierEtudiantService {
                 .orElseThrow(() -> new RuntimeException("Dossier non trouvé pour l'étudiant: " + etudiantId));
     }
 
-    @Override
+    /*  @Override
     public List<DossierEtudiant> getByFiliere(Integer filiereId) {
         return repository.findByFiliereId(filiereId);
     }
 
- /*   @Override
+  @Override
     public List<DossierEtudiant> getByStatut(DossierEtudiant.StatutDossier statut) {
         return repository.findByStatut(statut);
     }

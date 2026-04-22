@@ -41,7 +41,7 @@ public class EtudiantController {
         return ResponseEntity.ok(ApiResponse.ok("Etudiant trouvé", service.getByMatricule(matricule)));
     }
 
-    @GetMapping("/filiere/{filiere}")
+ /*   @GetMapping("/filiere/{filiere}")
     public ResponseEntity<ApiResponse<List<Etudiant>>> getByFiliere(@PathVariable String filiere) {
         return ResponseEntity.ok(ApiResponse.ok("Etudiants de la filière " + filiere, service.getByFiliere(filiere)));
     }
@@ -49,7 +49,7 @@ public class EtudiantController {
     @GetMapping("/niveau/{niveau}")
     public ResponseEntity<ApiResponse<List<Etudiant>>> getByNiveau(@PathVariable int niveau) {
         return ResponseEntity.ok(ApiResponse.ok("Etudiants du niveau " + niveau, service.getByNiveau(niveau)));
-    }
+    }*/
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<Void>> delete(@PathVariable Integer id) {

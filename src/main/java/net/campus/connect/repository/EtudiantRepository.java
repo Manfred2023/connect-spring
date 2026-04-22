@@ -8,6 +8,6 @@ import java.util.Optional;
 
 public interface EtudiantRepository extends JpaRepository<Etudiant, Integer> {
     Optional<Etudiant> findByMatricule(String matricule);
-    List<Etudiant> findByFiliere(String filiere);
-    List<Etudiant> findByNiveau(int niveau);
+   // List<Etudiant> findByFiliere(String filiere);
+    //List<Etudiant> findByNiveau(int niveau);
 }

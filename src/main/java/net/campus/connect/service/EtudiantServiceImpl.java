@@ -37,7 +37,7 @@ public class EtudiantServiceImpl implements EtudiantService {
                 .orElseThrow(() -> new RuntimeException("Etudiant not found with matricule: " + matricule));
     }
 
-    @Override
+   /* @Override
     public List<Etudiant> getByFiliere(String filiere) {
         return repository.findByFiliere(filiere);
     }
@@ -45,7 +45,7 @@ public class EtudiantServiceImpl implements EtudiantService {
     @Override
     public List<Etudiant> getByNiveau(int niveau) {
         return repository.findByNiveau(niveau);
-    }
+    }*/
 
     @Override
     public void delete(Integer id) {

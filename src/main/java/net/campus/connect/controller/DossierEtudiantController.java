@@ -40,12 +40,12 @@ public class DossierEtudiantController {
     public ResponseEntity<ApiResponse<DossierEtudiant>> getByEtudiant(@PathVariable Integer etudiantId) {
         return ResponseEntity.ok(ApiResponse.ok("Dossier trouvé", service.getByEtudiant(etudiantId)));
     }
-
+/*
     @GetMapping("/filiere/{filiereId}")
     public ResponseEntity<ApiResponse<List<DossierEtudiant>>> getByFiliere(@PathVariable Integer filiereId) {
         return ResponseEntity.ok(ApiResponse.ok("Dossiers de la filière", service.getByFiliere(filiereId)));
     }
-/*
+
     @GetMapping("/statut/{statut}")
     public ResponseEntity<ApiResponse<List<DossierEtudiant>>> getByStatut(
             @PathVariable DossierEtudiant.StatutDossier statut) {

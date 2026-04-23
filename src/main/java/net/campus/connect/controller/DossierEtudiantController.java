@@ -1,8 +1,11 @@
 package net.campus.connect.controller;
 
+import net.campus.connect.clientDto.DossierEtudiantDto;
 import net.campus.connect.dto.ApiResponse;
+import net.campus.connect.model.Axe;
 import net.campus.connect.model.DossierEtudiant;
-import net.campus.connect.service.DossierEtudiantService;
+import net.campus.connect.model.Etudiant;
+import net.campus.connect.service.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,16 +17,61 @@ import java.util.List;
 public class DossierEtudiantController {
 
     private final DossierEtudiantService service;
+    private final EtudiantService etudiantService;
+    private final AxeService axeService;
 
-    public DossierEtudiantController(DossierEtudiantService service) {
+    public DossierEtudiantController(DossierEtudiantService service, EtudiantService etudiantService, AxeService axeService) {
         this.service = service;
+        this.etudiantService = etudiantService;
+        this.axeService = axeService;
     }
 
+
     @PostMapping
-    public ResponseEntity<ApiResponse<DossierEtudiant>> create(@RequestBody DossierEtudiant dossier) {
+    public ResponseEntity<ApiResponse<DossierEtudiant>> create(@RequestBody DossierEtudiantDto dossierEtudiantDto) {
+        DossierEtudiant dossierEtudiant;
+        Etudiant etudiant;
+        Axe axe;
+        try{
+            etudiant =  etudiantService.getById(dossierEtudiantDto.getEtudiantId());
+        } catch (Throwable e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(ApiResponse.error(e.getMessage()));
+        }
+
+        try{
+            axe =  axeService.getById(dossierEtudiantDto.getAxeId());
+        } catch (Throwable e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(ApiResponse.error(e.getMessage()));
+        }
+
+        try {
+
+            dossierEtudiant = service.save(
+                  new DossierEtudiant(
+                            etudiant,
+                            dossierEtudiantDto.getNumeroDossier(),
+                            dossierEtudiantDto.isFormIni(),
+                            dossierEtudiantDto.getAnneAcademique(),
+                            axe,
+                            dossierEtudiantDto.isCurrent()
+                    )
+            );
+
+
+        }catch (Throwable e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(ApiResponse.error(e.getMessage()));
+        }
+
+
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(ApiResponse.ok("Dossier créé avec succès", service.save(dossier)));
+                .body(ApiResponse.ok("Dossier créé avec succès", dossierEtudiant));
     }
 
     @GetMapping

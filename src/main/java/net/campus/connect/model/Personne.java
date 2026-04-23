@@ -11,13 +11,20 @@ public abstract class Personne {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false)
     private String nom;
+
+    @Column(nullable = false)
     private String prenom;
+
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false,unique = true)
     private String telephone;
 
     @ManyToOne
-    @JoinColumn(name = "city_id")
+    @JoinColumn(name = "city_id", nullable = false)
     private City city;
 
     public Personne() {}

@@ -13,26 +13,42 @@ public class Professeur extends Personne {
     private Integer id;
     private Boolean isPermanent;
 
-    @Column(unique = true)
-    private String email;
-
     @ManyToOne
     @JoinColumn(name = "departement_id")
     private Departement departement;
     private Date dateRecrutement;
     private Integer anciennete;
 
+    @Column(nullable = false)
+    private String mdp;
+
+    public Boolean getPermanent() {
+        return isPermanent;
+    }
+
+    public void setPermanent(Boolean permanent) {
+        isPermanent = permanent;
+    }
+
+    public String getMdp() {
+        return mdp;
+    }
+
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
+    }
+
     public Professeur() {}
 
-
-    public Professeur(Integer id, Boolean status, String email, Departement departement, Date dateRecrutement, Integer anciennete) {
-        this.id = id;
-        this.isPermanent = status;
-        this.email = email;
+    public Professeur(String nom, String prenom, String email, String telephone, City city, Boolean isPermanent, Departement departement, Date dateRecrutement, Integer anciennete,String mdp) {
+        super(nom, prenom, email, telephone, city);
+        this.isPermanent = isPermanent;
         this.departement = departement;
         this.dateRecrutement = dateRecrutement;
         this.anciennete = anciennete;
+        this.mdp=mdp;
     }
+
 
     @Override
     public Integer getId() {
@@ -50,16 +66,6 @@ public class Professeur extends Personne {
 
     public void setStatus(Boolean status) {
         this.isPermanent = status;
-    }
-
-    @Override
-    public String getEmail() {
-        return email;
-    }
-
-    @Override
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Departement getDepartement() {

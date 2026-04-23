@@ -18,17 +18,29 @@ public class Departement {
     private String sigle;
 
     @OneToOne
-    @JoinColumn(name = "chief_id")
+    @JoinColumn(name = "chief_id", nullable = true)
     private Professeur chief;
 
+    @OneToOne
+    @JoinColumn(name = "filiere_id", unique = true)
+    private Filiere filiere;
 
-    public Departement(Integer id, String name, String sigle, Professeur chief) {
-        this.id = id;
+
+    public Departement(  String name, String sigle, Professeur chief, Filiere filiere) {
+
         this.name = name;
         this.sigle = sigle;
         this.chief = chief;
+        this.filiere = filiere;
     }
 
+    public Filiere getFiliere() {
+        return filiere;
+    }
+
+    public void setFiliere(Filiere filiere) {
+        this.filiere = filiere;
+    }
 
     public Departement() {
     }

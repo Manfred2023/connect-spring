@@ -1,7 +1,10 @@
 package net.campus.connect.controller;
 
+import net.campus.connect.clientDto.StudentCreateDto;
 import net.campus.connect.dto.ApiResponse;
+import net.campus.connect.model.City;
 import net.campus.connect.model.Etudiant;
+import net.campus.connect.service.CityService;
 import net.campus.connect.service.EtudiantService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,16 +17,47 @@ import java.util.List;
 public class EtudiantController {
 
     private final EtudiantService service;
+    private final CityService cityService;
 
-    public EtudiantController(EtudiantService service) {
+    public EtudiantController(EtudiantService service, CityService cityService) {
         this.service = service;
+        this.cityService = cityService;
     }
 
+
     @PostMapping
-    public ResponseEntity<ApiResponse<Etudiant>> create(@RequestBody Etudiant etudiant) {
+    public ResponseEntity<ApiResponse<Etudiant>> create(@RequestBody StudentCreateDto studentCreateDto) {
+        City city;
+        Etudiant etudiant;
+
+        try{
+             city = cityService.getById(studentCreateDto.getCityId());
+        }catch (Throwable e){
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(ApiResponse.error(e.getMessage()));
+        }
+        try{
+
+            etudiant = service.save(new Etudiant(
+                    studentCreateDto.getNom(),
+                    studentCreateDto.getPrenom(),
+                    studentCreateDto.getEmail(),
+                    studentCreateDto.getMobile(),
+                    city,
+                    studentCreateDto.getMatricul() ,
+                    studentCreateDto.getMdp()
+            ));
+        } catch (Throwable e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(ApiResponse.error(e.getMessage()));
+        }
+
+        System.out.println(etudiant.toString());
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(ApiResponse.ok("Etudiant créé avec succès", service.save(etudiant)));
+                .body(ApiResponse.ok("Etudiant créé avec succès",etudiant ));
     }
 
     @GetMapping

@@ -11,32 +11,54 @@ public class DossierEtudiant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne
-    @JoinColumn(name = "etudiant_id")
+    @ManyToOne
+    @JoinColumn(name = "etudiant_id", nullable = false)
     private Etudiant etudiant;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String numeroDossier;
 
     @Column()
     private Boolean isNormalFormation;
 
-    private LocalDate anneAcademique;
+    @Column(nullable = false)
+    private String anneAcademique;
 
-    @OneToOne
-    @JoinColumn(name = "axe_id")
+    @ManyToOne
+    @JoinColumn(name = "axe_id", nullable = false)
     private Axe axe ;
 
-    private Boolean status;
+    @Column(nullable = false)
+    private Boolean isCurrent;
 
-    public DossierEtudiant(Integer id, Etudiant etudiant, String numeroDossier, Boolean isNormalFormation, LocalDate anneAcademique, Axe axe, Boolean status) {
-        this.id = id;
+    private float moyenneGenerale;
+
+    public Boolean getCurrent() {
+        return isCurrent;
+    }
+
+    public void setCurrent(Boolean current) {
+        isCurrent = current;
+    }
+
+    public float getMoyenneGenerale() {
+        return moyenneGenerale;
+    }
+
+    public void setMoyenneGenerale(float moyenneGenerale) {
+        this.moyenneGenerale = moyenneGenerale;
+    }
+
+    public DossierEtudiant(Etudiant etudiant, String numeroDossier, Boolean isNormalFormation, String anneAcademique, Axe axe, Boolean status) {
         this.etudiant = etudiant;
         this.numeroDossier = numeroDossier;
         this.isNormalFormation = isNormalFormation;
         this.anneAcademique = anneAcademique;
         this.axe = axe;
-        this.status = status;
+        this.isCurrent = status;
+    }
+
+    public DossierEtudiant() {
     }
 
 
@@ -72,11 +94,11 @@ public class DossierEtudiant {
         isNormalFormation = normalFormation;
     }
 
-    public LocalDate getAnneAcademique() {
+    public String getAnneAcademique() {
         return anneAcademique;
     }
 
-    public void setAnneAcademique(LocalDate anneAcademique) {
+    public void setAnneAcademique(String anneAcademique) {
         this.anneAcademique = anneAcademique;
     }
 
@@ -89,10 +111,10 @@ public class DossierEtudiant {
     }
 
     public Boolean getStatus() {
-        return status;
+        return isCurrent;
     }
 
     public void setStatus(Boolean status) {
-        this.status = status;
+        this.isCurrent = status;
     }
 }

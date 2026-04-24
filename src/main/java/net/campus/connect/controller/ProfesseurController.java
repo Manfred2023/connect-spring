@@ -1,7 +1,13 @@
 package net.campus.connect.controller;
 
+import net.campus.connect.clientDto.ProfesseurCreateDto;
 import net.campus.connect.dto.ApiResponse;
+import net.campus.connect.model.City;
+import net.campus.connect.model.Departement;
+import net.campus.connect.model.Etudiant;
 import net.campus.connect.model.Professeur;
+import net.campus.connect.service.CityService;
+import net.campus.connect.service.DepartementService;
 import net.campus.connect.service.ProfesseurService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,16 +20,64 @@ import java.util.List;
 public class ProfesseurController {
 
     private final ProfesseurService service;
+    private final CityService cityService;
+    private final DepartementService departementService;
 
-    public ProfesseurController(ProfesseurService service) {
+    public ProfesseurController(ProfesseurService service, CityService cityService, DepartementService departementService) {
         this.service = service;
+        this.cityService = cityService;
+        this.departementService = departementService;
     }
 
+
     @PostMapping
-    public ResponseEntity<ApiResponse<Professeur>> create(@RequestBody Professeur professeur) {
+    public ResponseEntity<ApiResponse<Professeur>> create(@RequestBody ProfesseurCreateDto professeurCreateDto) {
+        Professeur professeur;
+        Departement departement;
+        City city;
+
+        //User check
+        try{
+            city = cityService.getById(professeurCreateDto.getCityId());
+        }catch (Throwable e){
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(ApiResponse.error(e.getMessage()));
+        }
+
+        //Departement check
+        try{
+            departement = departementService.getById(professeurCreateDto.getDepartementId());
+        }catch (Throwable e){
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(ApiResponse.error(e.getMessage()));
+        }
+
+
+        try{
+
+            professeur = service.save(new Professeur(
+                    professeurCreateDto.getNom(),
+                    professeurCreateDto.getPrenom(),
+                    professeurCreateDto.getEmail(),
+                    professeurCreateDto.getMobile(),
+                    city,
+                    professeurCreateDto.isPermanent() ,
+                    departement,
+                    professeurCreateDto.getDateRecrutement(),
+                    professeurCreateDto.getAnciennete(),
+                    professeurCreateDto.getMdp()
+            ));
+        } catch (Throwable e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(ApiResponse.error(e.getMessage()));
+        }
+
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(ApiResponse.ok("Professeur créé avec succès", service.save(professeur)));
+                .body(ApiResponse.ok("Professeur créé avec succès",professeur ));
     }
 
     @GetMapping

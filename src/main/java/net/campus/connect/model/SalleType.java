@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @DiscriminatorValue("type_salles")
-public class TypeSalle {
+public class SalleType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,14 +20,14 @@ public class TypeSalle {
     private String description;
 
 
-    public TypeSalle(Integer id, String code, String name, String description) {
+    public SalleType(Integer id, String code, String name, String description) {
         this.id = id;
         this.code = code;
         this.name = name;
         this.description = description;
     }
 
-    public TypeSalle() {
+    public SalleType() {
     }
 
 

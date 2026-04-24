@@ -1,6 +1,6 @@
 package net.campus.connect.controller;
 import net.campus.connect.dto.ApiResponse;
-import net.campus.connect.model.TypeSalle;
+import net.campus.connect.model.SalleType;
 import net.campus.connect.service.TypeSalleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,22 +20,22 @@ public class TypeSalleController {
     }
 
     @PostMapping
-    public ResponseEntity<ApiResponse<TypeSalle>> create(@RequestBody TypeSalle typeSalle) {
-        TypeSalle saved = service.save(typeSalle);
+    public ResponseEntity<ApiResponse<SalleType>> create(@RequestBody SalleType typeSalle) {
+        SalleType saved = service.save(typeSalle);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(ApiResponse.ok("TypeSalle created successfully", saved));
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<TypeSalle>>> getAll() {
-        List<TypeSalle> typeSalles = service.getAll();
+    public ResponseEntity<ApiResponse<List<SalleType>>> getAll() {
+        List<SalleType> typeSalles = service.getAll();
         return ResponseEntity.ok(ApiResponse.ok("TypeSalle retrieved successfully", typeSalles));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<TypeSalle>> getById(@PathVariable Integer id) {
-        TypeSalle typeSalle = service.getById(id);
+    public ResponseEntity<ApiResponse<SalleType>> getById(@PathVariable Integer id) {
+        SalleType typeSalle = service.getById(id);
         return ResponseEntity.ok(ApiResponse.ok("TypeSalle retrieved successfully", typeSalle));
     }
 

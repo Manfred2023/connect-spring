@@ -1,13 +1,10 @@
 package net.campus.connect.service;
 
-import net.campus.connect.model.City;
-import net.campus.connect.model.TypeSalle;
-import net.campus.connect.repository.CityRepository;
+import net.campus.connect.model.SalleType;
 import net.campus.connect.repository.TypeSalleRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TypeSalleServiceImpl implements TypeSalleService{
@@ -19,17 +16,17 @@ public class TypeSalleServiceImpl implements TypeSalleService{
     }
 
     @Override
-    public TypeSalle save(TypeSalle typeSalle) {
+    public SalleType save(SalleType typeSalle) {
         return repository.save(typeSalle);
     }
 
     @Override
-    public List<TypeSalle> getAll() {
+    public List<SalleType> getAll() {
         return repository.findAll();
     }
 
 
-    public TypeSalle getById(Integer id) {
+    public SalleType getById(Integer id) {
         return repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("TyppeSalle not found with id: " + id));
     }

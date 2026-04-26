@@ -12,8 +12,8 @@ public class Inscription {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "etudiant_id", nullable = false)
-    private DossierEtudiant etudiant;
+    @JoinColumn(name = "dossier_etudiant_id", nullable = false)
+    private DossierEtudiant dossierEtudiant;
 
     @ManyToOne
     @JoinColumn(name = "groupe_id", nullable = false)
@@ -22,13 +22,18 @@ public class Inscription {
     private LocalDate dateInscription;
 
     // optionnel mais utile
-    private String statut; // ACTIF, SUSPENDU, etc.
-
+    private boolean statut;
     public Inscription() {}
 
-    public Inscription(Integer id, DossierEtudiant etudiant, Groupe groupe, LocalDate dateInscription, String statut) {
+    public Inscription(Integer id, DossierEtudiant etudiant, Groupe groupe, LocalDate dateInscription, boolean statut) {
         this.id = id;
-        this.etudiant = etudiant;
+        this.dossierEtudiant = etudiant;
+        this.groupe = groupe;
+        this.dateInscription = dateInscription;
+        this.statut = statut;
+    }
+    public Inscription(  DossierEtudiant etudiant, Groupe groupe, LocalDate dateInscription, boolean statut) {
+        this.dossierEtudiant = etudiant;
         this.groupe = groupe;
         this.dateInscription = dateInscription;
         this.statut = statut;
@@ -42,12 +47,12 @@ public class Inscription {
         this.id = id;
     }
 
-    public DossierEtudiant getEtudiant() {
-        return etudiant;
+    public DossierEtudiant getDossierEtudiant() {
+        return dossierEtudiant;
     }
 
-    public void setEtudiant(DossierEtudiant etudiant) {
-        this.etudiant = etudiant;
+    public void setDossierEtudiant(DossierEtudiant dossierEtudiant) {
+        this.dossierEtudiant = dossierEtudiant;
     }
 
     public Groupe getGroupe() {
@@ -66,11 +71,11 @@ public class Inscription {
         this.dateInscription = dateInscription;
     }
 
-    public String getStatut() {
+    public boolean getStatut() {
         return statut;
     }
 
-    public void setStatut(String statut) {
+    public void setStatut(boolean statut) {
         this.statut = statut;
     }
 }

@@ -19,15 +19,15 @@ public class InscriptionServiceImpl implements InscriptionService {
     @Override
     public Inscription inscrire(Inscription inscription) {
 
-        repository.findByEtudiantIdAndGroupeId(
-                inscription.getEtudiant().getId(),
+        repository.findByDossierEtudiantIdAndGroupeId(
+                inscription.getDossierEtudiant().getId(),
                 inscription.getGroupe().getId()
         ).ifPresent(i -> {
             throw new RuntimeException("Etudiant déjà inscrit dans ce groupe");
         });
 
         inscription.setDateInscription(LocalDate.now());
-        inscription.setStatut("ACTIF");
+        inscription.setStatut(true);
 
         return repository.save(inscription);
     }
@@ -49,5 +49,10 @@ public class InscriptionServiceImpl implements InscriptionService {
     @Override
     public List<Inscription> getAll() {
         return repository.findAll();
+    }
+
+    @Override
+    public List<Inscription> getByGroupe(Integer groupeId) {
+        return repository.findByGroupeId(groupeId);
     }
 }

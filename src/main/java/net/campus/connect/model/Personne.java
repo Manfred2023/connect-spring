@@ -29,7 +29,8 @@ public abstract class Personne {
 
     public Personne() {}
 
-    public Personne(String nom, String prenom, String email, String telephone, City city) {
+    public Personne(Integer id, String nom, String prenom, String email, String telephone, City city) {
+        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;

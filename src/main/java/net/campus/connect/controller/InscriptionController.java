@@ -57,6 +57,8 @@ public class InscriptionController {
                     .status(HttpStatus.NOT_FOUND)
                     .body(ApiResponse.error(e.getMessage()));
         }
+
+
         inscriptions = service.getByGroupe(groupe.getId());
 
         if(inscriptions.size() >= groupe.getCapMax()){

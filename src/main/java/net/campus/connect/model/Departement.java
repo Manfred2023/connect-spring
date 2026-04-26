@@ -1,6 +1,7 @@
 package net.campus.connect.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -19,6 +20,7 @@ public class Departement {
 
     @OneToOne
     @JoinColumn(name = "chief_id", nullable = true)
+    @JsonIgnore
     private Professeur chief;
 
     @OneToOne

@@ -11,4 +11,5 @@ public interface InscriptionRepository extends JpaRepository<Inscription, Intege
 
     Optional<Inscription> findByDossierEtudiantIdAndGroupeId(Integer etudiantId, Integer groupeId);
     List<Inscription> findByGroupeId(Integer groupeId);
+    List<Inscription> findByDossierEtudiantId(Integer etudiantId);
 }

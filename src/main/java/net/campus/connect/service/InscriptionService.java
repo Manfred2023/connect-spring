@@ -16,4 +16,6 @@ public interface InscriptionService {
     List<Inscription> getAll();
 
     List<Inscription> getByGroupe(Integer groupeId);
+
+    List<Inscription> findByDossierEtudiantId(Integer dossierEtudiantId);
 }

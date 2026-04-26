@@ -4,7 +4,7 @@ package net.campus.connect.model;
 import jakarta.persistence.*;
 
 @Entity
-@DiscriminatorValue("type_salles")
+@DiscriminatorValue("salles_types ")
 public class SalleType {
 
     @Id

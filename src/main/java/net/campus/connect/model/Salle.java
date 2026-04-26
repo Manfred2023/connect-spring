@@ -15,7 +15,7 @@ public class Salle {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "type_salle_id")
+    @JoinColumn(name = "salle_types_id")
     private SalleType typeSalle;
 
     @Column(unique = true)

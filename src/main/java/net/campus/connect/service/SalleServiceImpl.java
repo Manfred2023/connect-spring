@@ -22,6 +22,12 @@ public class SalleServiceImpl implements SalleService{
     }
 
     @Override
+    public Salle getById(Integer id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Salle not found with id: " + id));
+    }
+
+    @Override
     public List<Salle> getAll() {
         return repository.findAll();
     }

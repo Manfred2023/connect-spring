@@ -55,4 +55,9 @@ public class InscriptionServiceImpl implements InscriptionService {
     public List<Inscription> getByGroupe(Integer groupeId) {
         return repository.findByGroupeId(groupeId);
     }
+
+    @Override
+    public List<Inscription> findByDossierEtudiantId(Integer dossierEtudiantId) {
+        return repository.findByDossierEtudiantId(dossierEtudiantId);
+    }
 }

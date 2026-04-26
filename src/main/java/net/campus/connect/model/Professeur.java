@@ -8,9 +8,6 @@ import java.util.Date;
 @DiscriminatorValue("professeurs")
 public class Professeur extends Personne {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
     private Boolean isPermanent;
 
     @ManyToOne
@@ -40,8 +37,8 @@ public class Professeur extends Personne {
 
     public Professeur() {}
 
-    public Professeur(String nom, String prenom, String email, String telephone, City city, Boolean isPermanent, Departement departement, Date dateRecrutement, Integer anciennete,String mdp) {
-        super(nom, prenom, email, telephone, city);
+    public Professeur(Integer id, String nom, String prenom, String email, String telephone, City city, Boolean isPermanent, Departement departement, Date dateRecrutement, Integer anciennete,String mdp) {
+        super(id,nom, prenom, email, telephone, city);
         this.isPermanent = isPermanent;
         this.departement = departement;
         this.dateRecrutement = dateRecrutement;
@@ -49,16 +46,6 @@ public class Professeur extends Personne {
         this.mdp=mdp;
     }
 
-
-    @Override
-    public Integer getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Boolean getStatus() {
         return isPermanent;

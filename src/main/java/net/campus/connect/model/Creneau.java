@@ -1,27 +1,32 @@
 package net.campus.connect.model;
 
 import jakarta.persistence.*;
+import net.campus.connect.enums.Jour;
+import net.campus.connect.enums.Periode;
 
 import java.util.Date;
 
+
 @Entity
-@Table(name = "creneau")
+@Table(name = "creneaux",uniqueConstraints = @UniqueConstraint(columnNames = {"jour", "periode"}))
 public class Creneau {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(unique = true)
-    private String day;
-    private Date start_at;
-    private Date end_at;
+    @Enumerated(EnumType.STRING)
+    private Jour jour;
 
-    public Creneau(Integer id, String day, Date start_at, Date end_at) {
+    @Enumerated(EnumType.STRING)
+    private Periode periode;
+
+    public Creneau() {}
+
+    public Creneau(Integer id, Jour jour, Periode periode) {
         this.id = id;
-        this.day = day;
-        this.start_at = start_at;
-        this.end_at = end_at;
+        this.jour = jour;
+        this.periode = periode;
     }
 
     public Integer getId() {
@@ -32,27 +37,19 @@ public class Creneau {
         this.id = id;
     }
 
-    public String getDay() {
-        return day;
+    public Jour getJour() {
+        return jour;
     }
 
-    public void setDay(String day) {
-        this.day = day;
+    public void setJour(Jour jour) {
+        this.jour = jour;
     }
 
-    public Date getStart_at() {
-        return start_at;
+    public Periode getPeriode() {
+        return periode;
     }
 
-    public void setStart_at(Date start_at) {
-        this.start_at = start_at;
-    }
-
-    public Date getEnd_at() {
-        return end_at;
-    }
-
-    public void setEnd_at(Date end_at) {
-        this.end_at = end_at;
+    public void setPeriode(Periode periode) {
+        this.periode = periode;
     }
 }

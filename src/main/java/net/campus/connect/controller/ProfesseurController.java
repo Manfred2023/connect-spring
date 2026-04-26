@@ -58,6 +58,7 @@ public class ProfesseurController {
         try{
 
             professeur = service.save(new Professeur(
+                    null,
                     professeurCreateDto.getNom(),
                     professeurCreateDto.getPrenom(),
                     professeurCreateDto.getEmail(),

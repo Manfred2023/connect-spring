@@ -1,6 +1,5 @@
 package net.campus.connect;
 
-import net.campus.connect.model.TypeSalle;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

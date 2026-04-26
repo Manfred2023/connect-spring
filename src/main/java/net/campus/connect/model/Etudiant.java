@@ -6,10 +6,6 @@ import jakarta.persistence.*;
 @DiscriminatorValue("etudiants")
 public class Etudiant extends Personne {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
     @Column(unique = true,nullable = false)
     private String matricule;
 
@@ -18,30 +14,16 @@ public class Etudiant extends Personne {
 
     public Etudiant() {}
 
-    public Etudiant(String nom, String prenom, String email, String telephone, City city, String matricule,String mdp) {
-        super(nom, prenom, email, telephone, city);
+    public Etudiant(Integer id,String nom, String prenom, String email, String telephone, City city, String matricule,String mdp) {
+        super(id, nom, prenom, email, telephone, city);
         this.matricule = matricule;
         this.mdp = mdp;
     }
 
-    @Override
-    public String toString() {
-        return "Etudiant{" +
-                "id=" + id +
-                ", matricule='" + matricule + '\'' +
-                ", mdp='" + mdp + '\'' +
-                '}';
-    }
 
-    @Override
-    public Integer getId() {
-        return id;
-    }
 
-    @Override
-    public void setId(Integer id) {
-        this.id = id;
-    }
+
+
 
     public String getMdp() {
         return mdp;

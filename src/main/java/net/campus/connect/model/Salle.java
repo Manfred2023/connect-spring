@@ -15,8 +15,8 @@ public class Salle {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "type_salle_id")
-    private TypeSalle typeSalle;
+    @JoinColumn(name = "salle_types_id")
+    private SalleType typeSalle;
 
     @Column(unique = true)
     private String code;
@@ -26,7 +26,7 @@ public class Salle {
     public Salle() {
     }
 
-    public Salle(Integer id, String name, TypeSalle typeSalle, String code, Integer max) {
+    public Salle(Integer id, String name, SalleType typeSalle, String code, Integer max) {
         this.id = id;
         this.name = name;
         this.typeSalle = typeSalle;
@@ -34,7 +34,7 @@ public class Salle {
         this.max = max;
     }
 
-    public TypeSalle getTypeSalle() {
+    public SalleType getTypeSalle() {
         return typeSalle;
     }
 
@@ -62,7 +62,7 @@ public class Salle {
         this.code = code;
     }
 
-    public void setTypeSalle(TypeSalle typeSalle) {
+    public void setTypeSalle(SalleType typeSalle) {
         this.typeSalle = typeSalle;
     }
 

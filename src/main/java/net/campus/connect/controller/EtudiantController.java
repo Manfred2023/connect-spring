@@ -1,6 +1,7 @@
 package net.campus.connect.controller;
 
 import net.campus.connect.clientDto.StudentCreateDto;
+import net.campus.connect.clientDto.StudentLogin;
 import net.campus.connect.dto.ApiResponse;
 import net.campus.connect.model.City;
 import net.campus.connect.model.Etudiant;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/etudiants")
@@ -40,6 +42,7 @@ public class EtudiantController {
         try{
 
             etudiant = service.save(new Etudiant(
+                    null,
                     studentCreateDto.getNom(),
                     studentCreateDto.getPrenom(),
                     studentCreateDto.getEmail(),
@@ -58,6 +61,29 @@ public class EtudiantController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(ApiResponse.ok("Etudiant créé avec succès",etudiant ));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<ApiResponse<Etudiant>> login(@RequestBody StudentLogin studentLogin) {
+        Etudiant etudiant;
+
+        try {
+            etudiant = service.getByMatricule(studentLogin.getMatricule());
+        }catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.UNAUTHORIZED)
+                    .body(ApiResponse.error("Echec lors de l'authentification"));
+        }
+        if(!Objects.equals(etudiant.getMdp(), studentLogin.getMdp())){
+            return ResponseEntity
+                    .status(HttpStatus.UNAUTHORIZED)
+                    .body(ApiResponse.error("Echec lors de l'authentification"));
+        }
+
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(ApiResponse.ok("Connexion reussie",etudiant ));
     }
 
     @GetMapping

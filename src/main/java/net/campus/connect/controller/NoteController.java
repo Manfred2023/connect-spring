@@ -32,6 +32,9 @@ public class NoteController {
         if(noteCreateDto.getValeur() > 20 || noteCreateDto.getValeur() < 0 ){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.error("La note ne doit etre comprise entre 0 et 20"));
         }
+        if(noteCreateDto.getCoefficient() > 6 || noteCreateDto.getCoefficient() <= 0 ){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.error("La note ne doit etre comprise entre 1 et 6"));
+        }
         try {
             inscription = inscriptionService.getById(noteCreateDto.getInscription_id());
         } catch (Exception e) {

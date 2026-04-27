@@ -49,7 +49,8 @@ public class DossierEtudiant {
         this.moyenneGenerale = moyenneGenerale;
     }
 
-    public DossierEtudiant(Etudiant etudiant, String numeroDossier, Boolean isNormalFormation, String anneAcademique, Axe axe, Boolean status) {
+    public DossierEtudiant(Integer id,Etudiant etudiant, String numeroDossier, Boolean isNormalFormation, String anneAcademique, Axe axe, Boolean status) {
+        this.id = id;
         this.etudiant = etudiant;
         this.numeroDossier = numeroDossier;
         this.isNormalFormation = isNormalFormation;

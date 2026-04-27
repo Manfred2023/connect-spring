@@ -52,6 +52,7 @@ public class DossierEtudiantController {
 
             dossierEtudiant = service.save(
                   new DossierEtudiant(
+                          null,
                             etudiant,
                             dossierEtudiantDto.getNumeroDossier(),
                             dossierEtudiantDto.isFormIni(),

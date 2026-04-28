@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/inscriptions")
 public class InscriptionController {
@@ -97,6 +98,13 @@ public class InscriptionController {
     public ResponseEntity<ApiResponse<Inscription>> getById(@PathVariable Integer id) {
         return ResponseEntity.ok(
                 ApiResponse.ok("Inscription trouvée", service.getById(id))
+        );
+    }
+
+    @GetMapping("/dossier/{id}")
+    public ResponseEntity<ApiResponse<List<Inscription>>> getByDossier(@PathVariable Integer id) {
+        return ResponseEntity.ok(
+                ApiResponse.ok("Inscription trouvée", service.findByDossierEtudiantId(id))
         );
     }
 

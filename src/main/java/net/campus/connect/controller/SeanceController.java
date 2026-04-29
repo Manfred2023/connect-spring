@@ -20,14 +20,16 @@ public class SeanceController {
     private final SeanceService service;
     private final CreneauService creneauService;
     private final GroupeService groupeService;
+    private final ProfesseurService professeurService;
     private final SalleService salleService;
     private final DossierEtudiantService dossierEtudiantService;
     private final InscriptionService inscriptionService;
 
-    public SeanceController(SeanceService service, CreneauService creneauService, GroupeService groupeService, SalleService salleService,  DossierEtudiantService dossierEtudiantService, InscriptionService inscriptionService) {
+    public SeanceController(SeanceService service, CreneauService creneauService, GroupeService groupeService, ProfesseurService professeurService, SalleService salleService, DossierEtudiantService dossierEtudiantService, InscriptionService inscriptionService) {
         this.service = service;
         this.creneauService = creneauService;
         this.groupeService = groupeService;
+        this.professeurService = professeurService;
         this.salleService = salleService;
         this.dossierEtudiantService = dossierEtudiantService;
         this.inscriptionService = inscriptionService;
@@ -125,6 +127,7 @@ public class SeanceController {
                 ApiResponse.ok("Emploi du temps étudiant", seances)
         );
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<Seance>> getById(@PathVariable Integer id) {
